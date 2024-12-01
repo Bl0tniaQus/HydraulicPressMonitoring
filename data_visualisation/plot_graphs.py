@@ -25,7 +25,7 @@ def graphs(nazwa_czujnika, atrybut_docelowy):
     for key, value in parametry.items():
         probki = lines[value];
         nazwa = key;
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(5.5, 6))
         plt.subplot(2, 1, 1)
         plt.plot(czas, probki)
         plt.title(f"{nazwa_czujnika}(t) for {nazwa_docelowa}: {nazwa}")

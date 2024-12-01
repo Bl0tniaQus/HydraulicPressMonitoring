@@ -51,3 +51,10 @@ def variance_f(row, fs, fmin, fmax):
     values = np.abs(v[f_range])
     return np.var(values)
 
+def variation_f(row, fs, fmin, fmax):
+    f = np.fft.fftfreq(row.shape[0], 1/fs)
+    v = np.fft.fft(row)
+    f_range = np.argwhere((f >= fmin) & (f <= fmax))
+    values = np.abs(v[f_range])
+    return np.divide(sd_f(row, fs, fmin, fmax), mean_f(row, fs, fmin, fmax))
+

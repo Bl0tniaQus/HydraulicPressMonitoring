@@ -80,11 +80,7 @@ def load_sensor(dataframe, sensor_name):
         dataframe[sensor_name+f"_f({freq[0]}-{freq[1]})_RMS"] = np.apply_along_axis(helper_functions.rms_f, 1, data, fs, freq[0], freq[1])
         dataframe[sensor_name+f"_f({freq[0]}-{freq[1]})_skewiness"] = np.apply_along_axis(helper_functions.skew_f, 1, data, fs, freq[0], freq[1])
         dataframe[sensor_name+f"_f({freq[0]}-{freq[1]})_kurtosis"] = np.apply_along_axis(helper_functions.kurtosis_f, 1, data, fs, freq[0], freq[1])
-
+        dataframe[sensor_name+f"_f({freq[0]}-{freq[1]})_variation"] = np.apply_along_axis(helper_functions.variation_f, 1, data, fs, freq[0], freq[1])
 
     return dataframe
-#TODO Frequency domain features, some more time domain features
-#t = np.linspace(0, duration, int(fs * duration), endpoint=False)
-#fft_result = np.fft.fft(row)
-#freq = np.fft.fftfreq(t.shape[-1], d=1/fs)
 
