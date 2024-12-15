@@ -6,6 +6,6 @@ frame = pd.DataFrame()
 target = pd.read_csv("../raw_data/profile.txt", sep="\t", header=None, names=["cooler", "valve", "pump", "bar", "stable"])
 for sensor in sensors:
     frame = load_sensor.load_sensor(frame, sensor)
-
-frame = pd.concat([frame, target], axis = 1)
-frame.to_csv("../data.csv", index = False)
+frame.fillna(0, inplace=True)
+frame = pd.concat([frame, target], axis=1)
+frame.to_csv("../data.csv", index=False)
