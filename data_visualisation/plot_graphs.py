@@ -38,7 +38,6 @@ def graphs(nazwa_czujnika, atrybut_docelowy):
         yf = np.fft.fft(probki)
         pos_idx = np.where(xf > 0)
         xf_pos = xf[pos_idx]
-        print(xf_pos)
         yf_pos = yf[pos_idx]
         plt.subplot(2, 1, 2)
         plt.plot(xf_pos, np.abs(yf_pos))  # Wyświetlamy amplitudę tylko dla dodatnich częstotliwości
