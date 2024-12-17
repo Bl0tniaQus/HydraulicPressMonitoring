@@ -36,7 +36,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
+	final_result = final_result + res
 final_result = final_result + "***PCA (N)***\n"
 for m in range(len(models)):
 	res = ""
@@ -53,8 +53,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
-
+	final_result = final_result + res
 final_result = final_result + "***PCA (300)***\n"
 for m in range(len(models)):
 	res = ""
@@ -71,7 +70,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
+	final_result = final_result + res
 final_result = final_result + "***PCA (150)***\n"
 for m in range(len(models)):
 	res = ""
@@ -88,7 +87,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
+	final_result = final_result + res
 final_result = final_result + "***PCA (50)***\n"
 for m in range(len(models)):
 	res = ""
@@ -105,7 +104,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
+	final_result = final_result + res
 final_result = final_result + "***PCA (17)***\n"
 for m in range(len(models)):
 	res = ""
@@ -122,7 +121,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
+	final_result = final_result + res
 final_result = final_result + "***PCA (2)***\n"
 for m in range(len(models)):
 	res = ""
@@ -139,9 +138,7 @@ for m in range(len(models)):
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
 	res = res + f"{names[m]} - time: {t:.5f}; \n"
-final_result = final_result + res
-
-
+	final_result = final_result + res
 result_file = open("result_t.txt", "w")
 result_file.write(final_result)
 result_file.close()
