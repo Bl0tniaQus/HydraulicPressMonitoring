@@ -35,10 +35,10 @@ for i, (train_index, test_index) in enumerate(folds):
 	set_ = {"X_train":X_train_new.copy(), "Y_train": Y_train_new.copy(), "X_test":X_test_new.copy(), "Y_test": Y_test_new.copy()}
 	sets.append(set_)
 
-#models = [DecisionTreeClassifier(), KNeighborsClassifier(), RandomForestClassifier(), GradientBoostingClassifier(), GaussianNB(), SVC(), MLPClassifier()]
-#names = ["DT", "KNN", "RF", "GBC", "GNB", "SVM", "MLP"]
-models = [DecisionTreeClassifier(), GaussianNB()]
-names = ["DT", "GNB"]
+models = [DecisionTreeClassifier(), KNeighborsClassifier(), RandomForestClassifier(), GradientBoostingClassifier(), GaussianNB(), SVC(), MLPClassifier()]
+names = ["DT", "KNN", "RF", "GBC", "GNB", "SVM", "MLP"]
+#models = [DecisionTreeClassifier(), GaussianNB()]
+#names = ["DT", "GNB"]
 final_result = final_result + "NO PCA;;\n"
 for m in range(len(models)):
 	accuracies = 0

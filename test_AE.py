@@ -14,7 +14,8 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import StratifiedKFold
 from timeit import default_timer as timer
 import pandas as pd
-
+import warnings
+warnings.filterwarnings('ignore')
 n_epochs = 30
 lr = 0.1
 
