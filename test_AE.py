@@ -18,7 +18,7 @@ import pandas as pd
 n_epochs = 30
 lr = 0.1
 
-final_result = ""
+final_result = "name;acc;f1\n"
 data = pd.read_csv("./data.csv")
 y = data.copy().iloc[:,data.shape[1]-5]
 x = data.copy().iloc[:, 0:data.shape[1]-5]
@@ -43,7 +43,9 @@ for i, (train_index, test_index) in enumerate(folds):
 
 models = [DecisionTreeClassifier(), KNeighborsClassifier(), RandomForestClassifier(), GradientBoostingClassifier(), GaussianNB(), SVC(), MLPClassifier()]
 names = ["DT", "KNN", "RF", "GBC", "GNB", "SVM", "MLP"]
-final_result = final_result + "***AutoEncoder***\n"
+#models = [DecisionTreeClassifier(), GaussianNB()]
+#names = ["DT", "GNB"]
+final_result = final_result + "AutoEncoder;;\n"
 for m in range(len(models)):
 	accuracies = 0
 	f1s = 0
@@ -67,13 +69,13 @@ for m in range(len(models)):
 		f1 = f1_score(Y_pred, Y_test, average="weighted") * 100
 		accuracies = accuracies + accuracy
 		f1s = f1s + f1
-	res = res + f"{names[m]} - Acc: {accuracies/10:.2f}, F1: {accuracies/10:.2f}; \n"
+	res = res + f"{names[m]};{accuracies/10:.2f};{accuracies/10:.2f}; \n"
 	final_result = final_result + res
-result_file = open("result_AE.txt", "w")
+result_file = open("result_AE.csv", "w")
 result_file.write(final_result)
 result_file.close()
 
-final_result = ""
+final_result = "name;time\n"
 data = pd.read_csv("./data.csv")
 y = data.copy().iloc[:,data.shape[1]-5]
 x = data.copy().iloc[:, 0:data.shape[1]-5]
@@ -84,7 +86,7 @@ X_train = scaler.fit_transform(X_train)
 
 AE = AutoEncoder.AE_train(X_train, n_epochs, lr)
 
-final_result = final_result + "***AutoEncoder***\n"
+final_result = final_result + "AutoEncoder;;\n"
 for m in range(len(models)):
 	res = ""
 	X_train_tensor = torch.from_numpy(X_train)
@@ -101,8 +103,8 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(X_obs_encoded.detach().numpy())
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-result_file = open("result_AE_t.txt", "w")
+result_file = open("result_AE_t.csv", "w")
 result_file.write(final_result)
 result_file.close()

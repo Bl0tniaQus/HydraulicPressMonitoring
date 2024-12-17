@@ -14,7 +14,7 @@ from timeit import default_timer as timer
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
-final_result = ""
+final_result = "name;time\n"
 data = pd.read_csv("./data.csv")
 y = data.copy().iloc[:,data.shape[1]-5]
 x = data.copy().iloc[:, 0:data.shape[1]-5]
@@ -24,7 +24,9 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 models = [DecisionTreeClassifier(), KNeighborsClassifier(), RandomForestClassifier(), GradientBoostingClassifier(), GaussianNB(), SVC(), MLPClassifier()]
 names = ["DT", "KNN", "RF", "GBC", "GNB", "SVM", "MLP"]
-final_result = final_result + "***NO PCA***\n"
+#models = [DecisionTreeClassifier(), GaussianNB()]
+#names = ["DT", "GNB"]
+final_result = final_result + "NO PCA;;\n"
 for m in range(len(models)):
 	res = ""
 	models[m].fit(X_train, Y_train)
@@ -35,9 +37,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-final_result = final_result + "***PCA (N)***\n"
+final_result = final_result + "PCA (N);;\n"
 for m in range(len(models)):
 	res = ""
 	pca = PCA()
@@ -52,9 +54,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-final_result = final_result + "***PCA (300)***\n"
+final_result = final_result + "PCA (300);;\n"
 for m in range(len(models)):
 	res = ""
 	pca = PCA(n_components = 300)
@@ -69,9 +71,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-final_result = final_result + "***PCA (150)***\n"
+final_result = final_result + "PCA (150);;\n"
 for m in range(len(models)):
 	res = ""
 	pca = PCA(n_components = 150)
@@ -86,9 +88,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-final_result = final_result + "***PCA (50)***\n"
+final_result = final_result + "PCA (50);;\n"
 for m in range(len(models)):
 	res = ""
 	pca = PCA(n_components = 50)
@@ -103,9 +105,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-final_result = final_result + "***PCA (17)***\n"
+final_result = final_result + "PCA (17);;\n"
 for m in range(len(models)):
 	res = ""
 	pca = PCA(n_components = 17)
@@ -120,9 +122,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-final_result = final_result + "***PCA (2)***\n"
+final_result = final_result + "PCA (2);;\n"
 for m in range(len(models)):
 	res = ""
 	pca = PCA(n_components = 2)
@@ -137,9 +139,9 @@ for m in range(len(models)):
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
 	t = (test_end - test_start) / X_test.shape[0]
-	res = res + f"{names[m]} - time: {t:.5f}; \n"
+	res = res + f"{names[m]};{t:.5f}\n"
 	final_result = final_result + res
-result_file = open("result_t.txt", "w")
+result_file = open("result_t.csv", "w")
 result_file.write(final_result)
 result_file.close()
 

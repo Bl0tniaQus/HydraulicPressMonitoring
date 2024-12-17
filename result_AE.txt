@@ -1,2 +1,0 @@
-***AutoEncoder***
-DT - Acc: 91.12, F1: 91.12; 
