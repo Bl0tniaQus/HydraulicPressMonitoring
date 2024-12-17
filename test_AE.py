@@ -70,7 +70,7 @@ for m in range(len(models)):
 		f1 = f1_score(Y_pred, Y_test, average="weighted") * 100
 		accuracies = accuracies + accuracy
 		f1s = f1s + f1
-	res = res + f"{names[m]};{accuracies/10:.2f};{accuracies/10:.2f}; \n"
+	res = res + f"{names[m]};{accuracies/10:.2f};{f1s/10:.2f}; \n"
 	final_result = final_result + res
 result_file = open("result_AE.csv", "w")
 result_file.write(final_result)
