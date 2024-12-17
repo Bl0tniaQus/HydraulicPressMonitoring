@@ -1,14 +1,14 @@
 ***NO PCA***
-DT - time: 0.00164; 
+DT - time: 0.00155; 
 ***PCA (N)***
-DT - time: 0.00566; 
+DT - time: 0.00164; 
 ***PCA (300)***
-DT - time: 0.00356; 
+DT - time: 0.00164; 
 ***PCA (150)***
-DT - time: 0.00434; 
+DT - time: 0.00167; 
 ***PCA (50)***
-DT - time: 0.00268; 
+DT - time: 0.00173; 
 ***PCA (17)***
-DT - time: 0.00218; 
+DT - time: 0.00178; 
 ***PCA (2)***
-DT - time: 0.00185; 
+DT - time: 0.00168; 

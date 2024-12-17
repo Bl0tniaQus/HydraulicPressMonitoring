@@ -30,7 +30,7 @@ for m in range(len(models)):
 	models[m].fit(X_train, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
 	test_end = timer()
@@ -46,7 +46,7 @@ for m in range(len(models)):
 	models[m].fit(X_PCA, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		x_obs = pca.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
@@ -64,7 +64,7 @@ for m in range(len(models)):
 	models[m].fit(X_PCA, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		x_obs = pca.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
@@ -81,7 +81,7 @@ for m in range(len(models)):
 	models[m].fit(X_PCA, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		x_obs = pca.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
@@ -98,7 +98,7 @@ for m in range(len(models)):
 	models[m].fit(X_PCA, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		x_obs = pca.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
@@ -115,7 +115,7 @@ for m in range(len(models)):
 	models[m].fit(X_PCA, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		x_obs = pca.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
@@ -132,7 +132,7 @@ for m in range(len(models)):
 	models[m].fit(X_PCA, Y_train)
 	test_start = timer()
 	for i in range(X_test.shape[0]):
-		x_obs = X_test.iloc[i:]
+		x_obs = X_test.iloc[[i]]
 		x_obs = scaler.transform(x_obs)
 		x_obs = pca.transform(x_obs)
 		Y_pred = models[m].predict(x_obs)
