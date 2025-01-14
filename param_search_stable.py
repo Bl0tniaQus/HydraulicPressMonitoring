@@ -32,12 +32,12 @@ def GridSearch(sets, hl, a, s, lr, e):
 		f1 = f1_score(Y_pred, Y_test, average="weighted") * 100
 		accuracies = accuracies + accuracy
 		f1s = f1s + f1
-	res = f"{hl} {a} {s} {lr} {e};  acc: {accuracies/10:.2f}; f1:{f1s/10:.2f}; \n"
+	res = f"{hl};{a};{s};{lr};{e};{accuracies/10:.2f};{f1s/10:.2f}\n"
 	return res
 
 
 
-final_result = "name;acc;f1\n"
+
 data = pd.read_csv("./data.csv")
 y = data.copy().iloc[:,data.shape[1]-1]
 x = data.copy().iloc[:, 0:data.shape[1]-5]
@@ -71,7 +71,7 @@ learning_rates = [0.001, 0.01, 0.1, 0.2]
 max_epochs = [200, 300, 500, 1000]
 n_models = len(hidden_layer_sizes) * len(activations) * len(solvers) * len(learning_rates) * len(max_epochs)
 i = 1
-final_result = ""
+final_result = "layers;activation;solver;lr;epochs;acc;f1"
 print("training")
 for hl in hidden_layer_sizes:
 	for a in activations:
@@ -88,7 +88,8 @@ for hl in hidden_layer_sizes:
 					i = i+1
 
 print("finished")
-result_file = open("result_stable.txt")
+result_file = open("result_stable.csv", "w")
+result_file.write(final_result)
 result_file.close()
 end = timer()
 print(f"time: {end - start}")
