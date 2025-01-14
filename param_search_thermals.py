@@ -29,9 +29,7 @@ def GridSearch(data, hl, a, s, lr, e):
 	Y_pred = model.predict(X_test)
 	accuracy = accuracy_score(Y_pred, Y_test) * 100
 	f1 = f1_score(Y_pred, Y_test, average="weighted") * 100
-	accuracies = accuracies + accuracy
-	f1s = f1s + f1
-	res = f"{hl};{a};{s};{lr};{e};{accuracies/10:.2f};{f1s/10:.2f}\n"
+	res = f"{hl};{a};{s};{lr};{e};{accuracy:.2f};{f1:.2f}\n"
 	return res
 
 
@@ -53,14 +51,14 @@ X_test = pca.transform(X_test)
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 data = [X_train, X_test, Y_train, Y_test]
-hidden_layer_sizes = [(100,), (50,), (50, 100,), (100, 100,), (50, 100, 200,), (200,), (100,200,), (50, 100, 50,), (100, 200, 100,), (100, 200, 300, 200, 100,)]
-activations = ['identity', 'logistic', 'tanh', 'relu']
-solvers = ['lbfgs', 'adam', 'sgd']
-learning_rates = [0.001, 0.01, 0.1, 0.2]
-max_epochs = [200, 300, 500, 1000]
+hidden_layer_sizes = [(100,), (50,), (200, ), (100,200)]
+activations = ['identity', 'tanh', 'relu']
+solvers = ['lbfgs', 'adam']
+learning_rates = [0.001, 0.01]
+max_epochs = [200, 300]
 n_models = len(hidden_layer_sizes) * len(activations) * len(solvers) * len(learning_rates) * len(max_epochs)
 i = 1
-final_result = "layers;activation;solver;lr;epochs;acc;f1"
+final_result = "layers;activation;solver;lr;epochs;acc;f1\n"
 print("training")
 for hl in hidden_layer_sizes:
 	for a in activations:
