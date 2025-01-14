@@ -44,11 +44,11 @@ scaler = StandardScaler()
 scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
-pca = PCA(n_components = 2)
-X_train = pca.fit_transform(X_train)
-X_test = pca.transform(X_test)
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+#pca = PCA(n_components = 2)
+#X_train = pca.fit_transform(X_train)
+#X_test = pca.transform(X_test)
+#X_train = scaler.fit_transform(X_train)
+#X_test = scaler.transform(X_test)
 data = [X_train, X_test, Y_train, Y_test]
 hidden_layer_sizes = [(100,), (50,), (200, ), (100,200)]
 activations = ['identity', 'tanh', 'relu']
