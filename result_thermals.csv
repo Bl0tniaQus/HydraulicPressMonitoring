@@ -1,9 +1,9 @@
 layers;activation;solver;lr;epochs;acc;f1
-(100,);identity;lbfgs;0.001;200;99.28;99.27
+(100,);identity;lbfgs;0.001;200;99.23;99.22
 (100,);identity;lbfgs;0.001;300;99.28;99.27
 (100,);identity;lbfgs;0.01;200;99.28;99.27
 (100,);identity;lbfgs;0.01;300;99.28;99.27
-(50,);identity;lbfgs;0.001;200;99.23;99.22
+(50,);identity;lbfgs;0.001;200;99.28;99.27
 (50,);identity;lbfgs;0.001;300;99.28;99.27
 (50,);identity;lbfgs;0.01;200;99.28;99.27
 (50,);identity;lbfgs;0.01;300;99.28;99.27

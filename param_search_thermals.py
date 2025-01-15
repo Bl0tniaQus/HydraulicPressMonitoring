@@ -75,7 +75,7 @@ for hl in hidden_layer_sizes:
 					i = i+1
 
 print("finished")
-result_file = open("result_thermals.csv", "w")
+result_file = open("result_thermals_cv.csv", "w")
 result_file.write(final_result)
 result_file.close()
 end = timer()

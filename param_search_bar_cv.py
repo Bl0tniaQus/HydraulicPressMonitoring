@@ -38,7 +38,7 @@ def GridSearch(sets, hl, a, s, lr, e):
 
 
 data = pd.read_csv("./data.csv")
-y = data.copy().iloc[:,data.shape[1]-5]
+y = data.copy().iloc[:,data.shape[1]-2]
 x = data.copy().iloc[:, 0:data.shape[1]-5]
 n = 10
 fold = StratifiedKFold(n_splits = n)
@@ -54,7 +54,7 @@ for i, (train_index, test_index) in enumerate(folds):
 	scaler.fit(X_train_new)
 	X_train_new = scaler.transform(X_train_new)
 	X_test_new = scaler.transform(X_test_new)
-	pca = PCA(n_components = 2)
+	pca = PCA(n_components = 150)
 	X_train_new = pca.fit_transform(X_train_new)
 	X_test_new = pca.transform(X_test_new)
 	scaler2 = StandardScaler()
@@ -88,7 +88,7 @@ for hl in hidden_layer_sizes:
 					i = i+1
 
 print("finished")
-result_file = open("result_thermals_cv.csv", "w")
+result_file = open("result_bar_cv.csv", "w")
 result_file.write(final_result)
 result_file.close()
 end = timer()
