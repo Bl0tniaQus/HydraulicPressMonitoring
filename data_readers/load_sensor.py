@@ -36,7 +36,6 @@ def load_sensor(dataframe, sensor_name):
     maxes = np.apply_along_axis(np.max, 1, data)
     p2p = maxes - mins
     RMS = np.apply_along_axis(helper_functions.rms, 1, data)
-    #expected_value = np.apply_along_axis(moment, 1, data, 1)
     variance = np.apply_along_axis(moment, 1, data, 2)
     sd = np.sqrt(variance)
     moment3 = np.apply_along_axis(moment, 1, data, 3)
