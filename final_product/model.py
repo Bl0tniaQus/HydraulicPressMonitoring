@@ -52,7 +52,7 @@ class Model:
             x_features = data_loader.loadObservation(x)
         else:
             x_features = x
-        print(x_features)
+        x_features = x_features.reshape(1,-1)
         x_features = self.scaler.transform(x_features)
         if self.pca > 0:
             x_features = self.pca_transformer.transform(x_features)
@@ -63,15 +63,17 @@ class Model:
         data = pd.read_csv(self.datafile)
         y = data.copy().iloc[:, data.shape[1]-self.target]
         x = data.copy().iloc[:, 0:data.shape[1]-5]
+        x = x.values
+        y = y.values
         n = 10
         fold = StratifiedKFold(n_splits = n)
         folds = fold.split(x, y)
         sets = []
         for i, (train_index, test_index) in enumerate(folds):
-            X_train_new = x.iloc[train_index]
-            X_test_new = x.iloc[test_index]
-            Y_train_new = y.iloc[train_index]
-            Y_test_new = y.iloc[test_index]
+            X_train_new = x[train_index]
+            X_test_new = x[test_index]
+            Y_train_new = y[train_index]
+            Y_test_new = y[test_index]
             scaler = StandardScaler()
             scaler.fit(X_train_new)
             X_train_new = scaler.transform(X_train_new)
