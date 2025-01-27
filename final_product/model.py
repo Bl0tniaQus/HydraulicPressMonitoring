@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
-
+import data_loader
 class Model:
     def __init__(self, target_type, datafile = "./data.csv"):
         self.target_type = target_type
@@ -19,7 +19,7 @@ class Model:
             self.target = 2
             self.pca = 150
             self.lr = 0.01
-            self.layers = (100,200)
+            self.layers = (100, 200)
         elif target_type == "pump":
             self.target = 3
             self.pca = 0
@@ -29,7 +29,7 @@ class Model:
             self.target = 4
             self.pca = 150
             self.lr = 0.001
-            self.layers = (100,200)
+            self.layers = (100, 200)
         elif target_type == "stable":
             self.target = 1
             self.pca = 50
@@ -47,11 +47,21 @@ class Model:
         self.scaler = None
         self.scaler2 = None
         self.pca_transformer = None
-    def predict(self, x):
-        return x
+    def predict(self, x, x_converted = False):
+        if not x_converted:
+            x_features = data_loader.loadObservation(x)
+        else:
+            x_features = x
+        print(x_features)
+        x_features = self.scaler.transform(x_features)
+        if self.pca > 0:
+            x_features = self.pca_transformer.transform(x_features)
+            x_features = self.scaler2.transform(x_features)
+        Y_pred = self.classifier.predict(x_features)
+        return Y_pred
     def fit(self):
-        data = pd.read_csv(datafile)
-        y = data.copy().iloc[:,data.shape[1]-self.target]
+        data = pd.read_csv(self.datafile)
+        y = data.copy().iloc[:, data.shape[1]-self.target]
         x = data.copy().iloc[:, 0:data.shape[1]-5]
         n = 10
         fold = StratifiedKFold(n_splits = n)
@@ -71,8 +81,8 @@ class Model:
                 X_train_new = pca.fit_transform(X_train_new)
                 X_test_new = pca.transform(X_test_new)
                 scaler2 = StandardScaler()
-                X_train_new = scaler.fit_transform(X_train_new)
-                X_test_new = scaler.transform(X_test_new)
+                X_train_new = scaler2.fit_transform(X_train_new)
+                X_test_new = scaler2.transform(X_test_new)
             else:
                 scaler2 = None
                 pca = None
