@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 import data_loader
 class Model:
-    def __init__(self, target_type, datafile = "./data.csv"):
+    def __init__(self, target_type):
         self.target_type = target_type
         if target_type == "cooler":
             self.target = 5
@@ -40,7 +40,6 @@ class Model:
             self.pca = 2
             self.lr = 0.001
             self.layers = (50,)
-        self.datafile = datafile
         self.classifier = None
         self.accuracy = 0
         self.scaler = None
@@ -58,8 +57,8 @@ class Model:
             x_features = self.scaler2.transform(x_features)
         Y_pred = self.classifier.predict(x_features)
         return Y_pred
-    def fit(self):
-        data = pd.read_csv(self.datafile)
+    def fit(self, datafile = "./data.csv"):
+        data = pd.read_csv(datafile)
         y = data.copy().iloc[:, data.shape[1]-self.target]
         x = data.copy().iloc[:, 0:data.shape[1]-5]
         x = x.values
