@@ -3,7 +3,6 @@ import numpy as np
 import scipy.signal
 import os
 from scipy.stats import kurtosis, skew, moment
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 sensors = ["PS1", "PS2", "PS3", "PS4", "PS5", "PS6", "TS1", "TS2", "TS3", "TS4", "FS1", "FS2", "SE", "VS1", "CP", "CE", "EPS1"]
